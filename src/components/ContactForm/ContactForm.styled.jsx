@@ -26,7 +26,6 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledButton = styled.button`
-  margin: 0 auto;
   color: #707379;
   text-transform: uppercase;
   padding: 5px 15px;
@@ -42,3 +41,7 @@ export const StyledButton = styled.button`
     box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
   }
 `;
+
+export const StyledAddBtn = styled(StyledButton)`
+  margin: 0 auto;
+`

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  StyledButton,
+  StyledAddBtn,
   StyledForm,
   StyledLabel,
   StyledInput,
@@ -58,7 +58,7 @@ export class ContactForm extends Component {
           required
           onChange={this.handleInputChange}
         />
-        <StyledButton type="submit">Add contact</StyledButton>
+        <StyledAddBtn type="submit">Add contact</StyledAddBtn>
       </StyledForm>
     );
   }

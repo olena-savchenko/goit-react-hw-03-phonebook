@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+
+
 export const StyledContact = styled.li`
   display: flex;
   gap: 10px;
@@ -14,3 +16,4 @@ export const StyledName = styled.span`
 export const StyledNumber = styled.span`
   font-size: 12px;
 `;
+

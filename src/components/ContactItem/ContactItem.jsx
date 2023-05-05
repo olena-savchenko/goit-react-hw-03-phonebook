@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { StyledButton } from 'components/ContactForm/ContactForm.styled';
-import { StyledContact, StyledName, StyledNumber } from './ContactItem.styled';
+import { StyledContact, StyledName, StyledNumber} from './ContactItem.styled';
 
 export const ContactItem = ({ name, number, deleteContact, id }) => (
   <StyledContact>
@@ -8,7 +8,7 @@ export const ContactItem = ({ name, number, deleteContact, id }) => (
       <StyledName>{name}: </StyledName>
       <StyledNumber>{number}</StyledNumber>
     </div>
-    <StyledButton type="button" onClick={() => deleteContact(id)}>
+    <StyledButton  type="button" onClick={() => deleteContact(id)}>
       Delete
     </StyledButton>
   </StyledContact>
