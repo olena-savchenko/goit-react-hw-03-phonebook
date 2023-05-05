@@ -5,17 +5,53 @@ import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import { Layout } from './Layout/Layout';
 
+
+const initialContacts = [
+  { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
+  { id: nanoid(), name: 'Hermione Kline', number: '443-89-12' },
+  { id: nanoid(), name: 'Eden Clements', number: '645-17-79' },
+  { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
+];
+
 export class App extends Component {
   state = {
-    contacts: [
-      { id: nanoid(), name: 'Rosie Simpson', number: '459-12-56' },
-      { id: nanoid(), name: 'Hermione Kline', number: '443-89-12' },
-      { id: nanoid(), name: 'Eden Clements', number: '645-17-79' },
-      { id: nanoid(), name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
+
+  
+  componentDidMount() {
+  
+      // беремо дані з localStorage
+    const savedContacts = localStorage.getItem('contacts');
+    console.log(savedContacts);
+
+      //якщо в localStorage не пусто
+    if (savedContacts !== null) {
+
+      // state міняємо на дані з localStorage
+      this.setState({ contacts : JSON.parse(savedContacts)})
+    }
+    else {
+      // якщо localStorage пустий, state.contacts задаємо початкові значення initialContacts
+      this.setState({contacts: initialContacts})
+    }
+  }
+
+  
+  componentDidUpdate(prevProps, prevState) {
+    
+        // якщо дані в state змінились
+    if (prevState.contacts !== this.state.contacts) {
+
+        // перезаписуємо localStorage
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    }
+  }
+
+
+  // міняє значення state після вводу даних в інпут
   handleInputChange = e => {
     const { name, value } = e.currentTarget;
     this.setState({
@@ -23,6 +59,8 @@ export class App extends Component {
     });
   };
 
+ 
+  // додає новий контакт
   addContact = ({ name, number }) => {
     const hasName = this.state.contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
@@ -46,6 +84,7 @@ export class App extends Component {
     });
   };
 
+  // фільтрує контакти в залежності від даних інпута
   filter = () => {
     const { contacts, filter } = this.state;
 
@@ -54,13 +93,17 @@ export class App extends Component {
     );
   };
 
+  // видаляє контакт
   deleteContact = id => {
     this.setState(prevState => ({
       contacts: this.state.contacts.filter(contact => contact.id !== id),
     }));
   };
 
+
+
   render() {
+
     return (
       <Layout>
         <h1>Phonebook</h1>
